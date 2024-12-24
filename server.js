@@ -21,13 +21,35 @@ const s3 = new AWS.S3();
 // Middleware to parse JSON data
 app.use(bodyParser.json());
 
-// Serve static files from the 'Website Testing' folder
-app.use(express.static(path.join(__dirname, '../Website Testing'))); // Adjust the path accordingly
+// Serve static files from the 'Styles' folder
+app.use('/styles', express.static(path.join(__dirname, 'Styles')));
 
-// Default route to serve index.html
+// Serve static files from the 'JS' folder
+app.use('/js', express.static(path.join(__dirname, 'JS')));  // Corrected to serve JS files
+
+// Serve static files from the 'HTML' folder
+app.use('/html', express.static(path.join(__dirname, 'HTML')));  // Corrected to serve HTML files
+
+// Serve index.html at the root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html')); // Make sure this path is correct
+  res.sendFile(path.join(__dirname, 'HTML', 'index.html')); // Serve the default index.html
 });
+
+// Serve other .html files from the 'HTML' folder
+app.get('/:page.html', (req, res) => {
+  const fileName = req.params.page + '.html'; // Get the filename from the URL parameter
+  const filePath = path.join(__dirname, 'HTML', fileName); // Construct the full path to the HTML file
+  
+  // Send the file if it exists, else return 404
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error('Error sending HTML file:', err);
+      res.status(404).send('File not found');
+    }
+  });
+});
+
+
 
 // Route to handle order summary upload to S3
 app.post('/upload-order', async (req, res) => {

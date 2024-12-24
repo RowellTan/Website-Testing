@@ -1,41 +1,15 @@
-const AWS = require('aws-sdk');
-const dynamoDB = new AWS.DynamoDB.DocumentClient();
+const express = require('express');
+const app = express();
+const path = require('path');
 
-exports.handler = async (event) => {
-    // Extract order details from the event (e.g., API request body)
-    const { orderID, customerName, totalAmount } = event;
+// Tell Express to serve static files from the "Styles" directory
+app.use('/Styles', express.static(path.join(__dirname, 'Styles')));
 
-    // Validate the input
-    if (!orderID || !customerName || !totalAmount) {
-        return {
-            statusCode: 400,
-            body: JSON.stringify({ message: 'orderID, customerName, and totalAmount are required' })
-        };
-    }
+// Serve your index.html file when the root path is accessed
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
-    // Prepare the data to store in DynamoDB
-    const params = {
-        TableName: 'Orders',  // Your DynamoDB table name
-        Item: {
-            orderID,           // The partition key
-            customerName,      // Additional order info
-            totalAmount,       // Additional order info
-            createdAt: new Date().toISOString()  // Timestamp when the order was created
-        }
-    };
-
-    try {
-        // Store the order data in DynamoDB
-        await dynamoDB.put(params).promise();
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ message: 'Order stored successfully', orderID })
-        };
-    } catch (error) {
-        console.error(error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ message: 'Failed to store order', error })
-        };
-    }
-};
+app.listen(3000, () => {
+  console.log('Server is running at http://localhost:3000');
+});
