@@ -1,0 +1,467 @@
+
+  
+  /* Cart Page Styles */
+  #cart {
+    margin-top: 90px; /* Adjust to avoid navbar overlap */
+    padding: 20px;
+  }
+  
+  .cart-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #9E7148;
+    margin-bottom: 20px;
+  }
+  
+  .cart-items {
+    margin-bottom: 30px;
+  }
+  
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cart-item:last-child {
+    border-bottom: none;
+  }
+  
+  .item-details {
+    display: flex;
+    align-items: center;
+  }
+  
+  .item-details img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+  }
+  
+  .item-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .item-name {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .item-price {
+    font-size: 16px;
+    color: #9E7148;
+  }
+  
+  .remove-item-btn {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .remove-item-btn:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Cart Summary Styles */
+  .cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+  }
+  
+  .total-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .checkout-btn {
+    background-color: #9E7148;
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .checkout-btn:hover {
+    background-color: #f0a500;
+  }
+  
+  #shop {
+    margin-top: 80px;
+    padding: 40px 0;
+  }
+  
+  .shop-container {
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .shop-container h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .product-item {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    width: 90%; /* Makes it responsive to screen size */
+    max-width: 300px; /* Limit the max width for small size */
+    margin: 10px auto; /* Centers the item and provides spacing */
+    padding: 1em; /* Use relative units for padding */
+    box-sizing: border-box; /* Includes padding and border in width/height */
+    transition: all 0.3s ease; /* Smooth transition for resizing */
+  }
+  
+  
+  .product-image {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .product-image img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .product-details {
+    padding: 10px;
+    width: 65%;
+  }
+  
+/* Padding around the product name */
+.product-name {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  padding-left: 10px;  /* Adds padding around the product name */
+  background-color: #fff;  /* Optional: You can add a background color */
+  border-radius: 5px;  /* Optional: For rounded corners around the name */
+}
+
+/* Padding around the product price */
+.product-price {
+  font-size: 1.2rem;
+  color: #888;
+  margin-bottom: 20px;
+  padding-left: 10px;  /* Adds padding around the product price */
+  background-color: #fff;  /* Optional: Background for the price */
+  border-radius: 5px;  /* Optional: For rounded corners around the price */
+}
+
+  
+.add-to-cart {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-left: auto;    /* Aligns the button to the right */
+  margin-right: 10px;   /* Adds some space from the right edge */
+  margin-bottom: 15px;  /* Adds padding below the button */
+  display: block;       /* Ensures the button behaves as a block-level element */
+}
+
+/* Styling for the added-to-cart message */
+.added-to-cart-message {
+  position: fixed;
+  bottom: -100px; /* Initially position the message off the bottom of the screen */
+  right: 20px; /* Align it to the right */
+  background-color: rgba(0, 128, 0, 0.9); /* Green background */
+  color: white;
+  padding: 15px 30px; /* Bigger padding for a larger message */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Larger font size */
+  font-weight: bold;
+  z-index: 9999;
+  opacity: 0; /* Initially make it invisible */
+  transition: opacity 0.5s ease-in-out, bottom 0.5s ease-in-out;
+  display: inline-block;
+  max-width: 90%; /* Ensure it doesn’t overflow off the screen */
+  word-wrap: break-word; /* Break long words */
+  margin-bottom: 10px; /* Space between stacked messages */
+}
+
+/* Slide-up and fade-in effect */
+.added-to-cart-message.show {
+  bottom: 20px; /* Move it to the bottom-right corner */
+  opacity: 1; /* Make it visible */
+}
+
+/* Slide-up animation when a new message is added */
+.added-to-cart-message:nth-child(n+2) {
+  bottom: calc(20px + 80px * (n-1)); /* Position new messages above previous ones */
+}
+
+/* Fade-out effect */
+.added-to-cart-message.fade-out {
+  opacity: 0; /* Make it disappear */
+  bottom: -100px; /* Move it down off the screen */
+}
+
+
+
+
+  .add-to-cart:hover {
+    background-color: #218838;
+  }
+  
+  /* Remove underline and change color for any links */
+a {
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Inherits color from parent element */
+}
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  /* Tablet and small screens */
+  .cart-item {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start;
+  }
+
+  .item-details img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .product-item {
+    width: 48%; /* Two items per row */
+  }
+
+  .product-name {
+    font-size: 1.3rem;
+  }
+
+  .product-price {
+    font-size: 1rem;
+  }
+
+  .checkout-btn {
+    font-size: 1rem;
+    padding: 10px 25px;
+  }
+}
+
+
+
+
+
+
+
+
+
+  /* General Styles for Cart */
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  align-items: center;
+}
+
+.cart-item-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-item-image {
+  width: 40%;  /* Scale down to 40% of the original size */
+  height: auto;  /* Maintain aspect ratio */
+  object-fit: contain;  /* Ensures the image is scaled proportionally */
+}
+
+/* Header Styling */
+.cart-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+  font-weight: bold;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+.cart-header-item {
+  padding: 10px;
+  text-align: center;
+  border-right: 1px solid #ddd;
+}
+
+/* Make the label a flex container and center its content */
+label {
+  display: flex;
+  justify-content: center;  /* Horizontally center the checkbox */
+  align-items: center;      /* Vertically center the checkbox */
+}
+
+/* Ensure checkbox size is appropriate */
+input[type="checkbox"] {
+  transform: scale(2.3); /* Adjust the checkbox size, you can tweak this value */
+}
+.cart-header-item:last-child {
+  border-right: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+
+  .cart-container {
+    padding: 20px;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-header {
+    grid-template-columns: 1fr 2fr 1fr; /* Adjust header for smaller screens */
+  }
+
+  .cart-header-item {
+    padding: 10px;
+    text-align: center;
+    border-right: none;
+  }
+
+  
+  .cart-item-image {
+    width: 100%; /* Adjust image size for smaller screens */
+  }
+
+  .remove-item-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .checkout-btn {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+
+
+/* Button Styles */
+.remove-item-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.remove-item-btn:hover {
+  background-color: #e60000;
+}
+
+#checkout {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#checkout:hover {
+  background-color: #45a049;
+}
+
+/* Cart Loader */
+.cart-loader {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #333;
+  padding: 20px;
+}
+
+.cart-loader span {
+  display: block;
+  font-size: 2rem;
+  color: #007bff;
+}
+
+.cart-loader::after {
+  content: '...';
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+/* Styling for the added-to-cart message */
+/* Container to hold all messages and allow stacking */
+body {
+  position: relative; /* Ensure it's the container for fixed-positioned elements */
+}
+
+/* 3D Printed Models Section Animation */
+@keyframes fadeInEase {
+  0% {
+    opacity: 0;
+    transform: translateY(30px); /* Start from below */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at normal position */
+  }
+}
+
+.animated-text {
+  animation: fadeInEase .65s ease-out; /* Animation duration and easing */
+}
+
+/* AOS Settings */
+[data-aos="fade-up"] {
+  opacity: 0;
+  transform: translateY(30px); /* Starts from below */
+  transition: opacity 1s, transform 1s ease-out;
+}
+[data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  transform: translateY(0); /* Ends at normal position */
+}

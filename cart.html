@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart Page</title>
+  <link rel="stylesheet" href="Styles/standardstyles.css">
+  <link rel="stylesheet" href="Styles/navbar.css">
+  <link rel="stylesheet" href="Styles/body.css">
+  <script src="script.js" defer></script>
+
+  <!-- Font Awesome CDN for cart icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <div class="page-container">
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+      <div class="navbar-container">
+        <a href="home.html" class="logo">My3DPrintShop</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span id="cart-item-count" class="cart-item-count"></span></a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Cart Page Content -->
+    <section id="cart">
+      <div class="cart-container">
+        <h2>Your Cart</h2>
+        <div id="cart-container"></div> <!-- Cart items will be dynamically displayed here -->
+        <div class="cart-total">
+          <p>Total: $<span id="total-price">0.00</span></p>
+          <p>Items in Cart: <span id="item-count">0</span></p> <!-- Item count -->
+          <button id="checkout" onclick="proceedToCheckout()">Proceed to Checkout</button>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 My3DPrintShop. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

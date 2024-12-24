@@ -1,0 +1,305 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 90%; /* Scales down the entire layout */
+}
+
+body {
+  
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;  /* Smooth scrolling */
+}
+/* Navbar Styles */
+
+
+
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-container .logo {
+  font-size: 30px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 25px;
+}
+
+.nav-links a {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Hover effect for navbar links */
+.nav-links a:hover {
+  background-color: #f0a500;  /* Yellow background on hover */
+  color: #333;
+}
+
+/* Apply scale to the main content section */
+#home {
+  transform: scale(0.9); /* Reduce the size by 10% */
+}
+
+/* Main Section */
+.home-section {
+  padding: 60px 20px 30px;
+  text-align: center;
+}
+
+.home-section h1 {
+  font-size: 36px;
+  color: #9E7148;
+  margin-bottom: 20px;
+}
+
+.home-section p {
+  font-size: 18px;
+  color: #555;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+/* Gallery Styles */
+.gallery {
+  margin-top: 40px;
+}
+
+.gallery h2 {
+  font-size: 28px;
+  color: #9E7148;
+  margin-bottom: 30px;
+}
+/* Container for the images */
+.images-container {
+  display: flex;
+  flex-wrap: wrap;  /* Allow images to wrap to the next line */
+  justify-content: center;  /* Center the items */
+  gap: 150px;  /* Adds space between the image cards */
+}
+
+.image-card {
+  text-align: center;  /* Align content to center inside the card */
+  border: 3px solid #9E7148;  /* Yellow border around each image card */
+  border-radius: 20px;
+  padding: 15px;  /* Reduced padding */
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.22);
+  transition: transform 0.3s ease-in-out;
+  flex: 0 0 calc(40% - 30px); /* Reduced the width to 40% of the container */
+  /* On mobile, it will adjust to 100% of the container */
+  overflow: hidden;  /* Hide overflow by default */
+  margin-bottom: 40px;  /* Increased bottom margin for bigger gap between cards */
+}
+
+.image-card img {
+  width: 100%;  /* Make image fill the container width */
+  height: auto;  /* Let the height adjust according to the image's aspect ratio */
+  object-fit: cover;  /* Ensures the image scales correctly without distortion */
+  border-radius: 10px;
+  margin-bottom: 10px;  /* Adjusted the margin between the image and text */
+}
+
+.image-card p {
+  font-size: 16px;
+  color: #9E7148;  /* Matching text color */
+  text-align: left;  /* Align the text to the left */
+}
+
+.image-card-header {
+  font-size: 20px;  /* Reduced font size for header */
+  font-weight: bold;
+  color: #9E7148;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+.extra-info {
+  display: none;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #6F4E37;
+}
+
+.show-more-btn {
+  background-color: #9E7148;  /* Set button color */
+  color: #fff;  /* White text color */
+  border: none;
+  padding: 8px 16px;  /* Adjusted padding for smaller button */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.show-more-btn:hover {
+  background-color: #7a5636;
+}
+
+/* Hover effects on gallery items */
+.image-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for the hover effect on the button */
+.show-more-btn:hover {
+  background-color: #7a5636;  /* Slightly darker color on hover */
+}
+
+/* Media query for mobile responsiveness */
+@media (max-width: 768px) {
+  .image-card {
+    flex: 0 0 100%; /* Each image card will take 100% width on small screens */
+  }
+}
+
+
+
+/* 3D Printed Models Section Animation */
+@keyframes fadeInEase {
+  0% {
+    opacity: 0;
+    transform: translateY(30px); /* Start from below */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at normal position */
+  }
+}
+
+.animated-text {
+  animation: fadeInEase .65s ease-out; /* Animation duration and easing */
+}
+
+/* AOS Settings */
+[data-aos="fade-up"] {
+  opacity: 0;
+  transform: translateY(30px); /* Starts from below */
+  transition: opacity 1s, transform 1s ease-out;
+}
+[data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  transform: translateY(0); /* Ends at normal position */
+}
+
+#shop {
+  padding: 40px 0;
+}
+
+.shop-container h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Product Item */
+.product-item {
+  position: relative; /* Makes this the reference point for absolutely positioned elements inside */
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.product-item:hover {
+  transform: translateY(-10px);
+}
+
+.product-link {
+  display: flex;
+  text-decoration: none;
+  color: black;
+  width: 100%;
+}
+
+.product-image {
+  width: 30%;
+  padding-right: 20px;
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.product-info {
+  width: 70%;
+}
+
+.product-name {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #888;
+}
+
+/* Button positioned over the product info */
+.add-to-cart {
+  position: absolute;  /* Make the button absolutely positioned */
+  bottom: 20px;  /* Adjust this to position the button over the image or text */
+  left: 50%;  /* Center the button horizontally */
+  transform: translateX(-50%);  /* Adjust for exact centering */
+  background-color: #ff9900;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  z-index: 10; /* Ensure the button is on top of the link */
+}
+
+.add-to-cart:hover {
+  background-color: #cc7a00;
+}
+
+/* Remove underline and change color for any links */
+a {
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Inherits color from parent element */
+}
+
+

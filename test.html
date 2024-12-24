@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Order</title>
+</head>
+<body>
+    <form id="order-form">
+        <input type="text" id="orderID" placeholder="Order ID" required />
+        <input type="text" id="customerName" placeholder="Customer Name" required />
+        <input type="number" id="orderBill" placeholder="Order Amount" required />
+        <input type="date" id="orderDate" required />
+        <button type="submit">Submit Order</button>
+      </form>
+      
+      <script>
+        document.getElementById('order-form').addEventListener('submit', function (event) {
+          event.preventDefault();
+      
+          const orderID = document.getElementById('orderID').value;
+          const customerName = document.getElementById('customerName').value;
+          const orderBill = document.getElementById('orderBill').value;
+          const orderDate = document.getElementById('orderDate').value;
+      
+          fetch('http://localhost:3000/test-put-dynamo', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              orderID: orderID,
+              customerName: customerName,
+              orderBill: parseFloat(orderBill),
+              orderDate: orderDate,
+            }),
+          })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            alert('Order submitted successfully!');
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            alert('Error submitting order.');
+          });
+        });
+      </script>
+      
+</body>
+</html>

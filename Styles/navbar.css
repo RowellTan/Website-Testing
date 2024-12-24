@@ -1,0 +1,267 @@
+/* Navbar Styles */
+.navbar {
+  background-color: #9E7148;
+  padding: 15px 30px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transition: top 0.3s;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Logo */
+.navbar-container .logo {
+  font-size: 30px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center; /* Vertically center the items */
+  justify-content: center; /* Center the nav links horizontally */
+  height: 100%; /* Ensure the nav-links take full height of the navbar */
+  list-style: none; /* Remove default list styling */
+  padding: 0;
+  margin: 0;
+}
+.nav-links li {
+  margin-left: 25px;
+}
+
+.nav-links a {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.nav-links li {
+  margin: 0 15px; /* Add some spacing between the links */
+
+}
+.nav-links a:hover {
+  background-color: #f0a500;
+  color: #333;
+}
+
+/* Cart Icon */
+.cart-icon i {
+  font-size: 24px;
+  color: rgb(255, 255, 255);
+  position: relative;
+}
+
+/* Cart Icon */
+.cart-icon i:hover {
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+  position: relative;
+}
+
+/* Cart Icon - When hovering over the entire <li> */
+.cart-icon.desktop-cart:hover i {
+  font-size: 24px;        /* Change the font size of the icon */
+  color: rgb(0, 0, 0);    /* Set the icon color to black */
+  position: relative;     /* Ensures the position of the icon is relative */
+}
+  
+
+
+/* Cart Item Count */
+.cart-item-count {
+  position: absolute;
+  top: 8px; /* Retains your preferred vertical positioning */
+  right: 20px; /* Retains your preferred horizontal positioning */
+  background-color: red;
+  color: white;
+  border-radius: 50%; 
+  padding: 3px 6px; /* Keeps padding consistent */
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 20px; /* Ensures consistent size for single/double digits */
+  height: 20px; /* Keeps it a circle */
+}
+
+/* Mobile View Adjustments */
+@media screen and (max-width: 768px) {
+  .cart-icon {
+    left: 10px; /* Move cart icon to the left for mobile */
+  }
+
+  .cart-item-count {
+    display: none; /* Hide the count on mobile devices */
+  }
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Sidebar starts off-screen */
+  width: 250px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Translucent background */
+  color: white;
+  padding: 20px;
+  transition: left 0.3s ease-in-out; /* Slide in effect */
+  z-index: 5; /* Make sure it's above the content */
+}
+
+.sidebar-links {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-links li {
+  margin-bottom: 20px;
+}
+
+.sidebar-links a {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.sidebar-links a:hover {
+  background-color: #f0a500;
+  color: #333;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  /* Hide nav links and cart icon for mobile */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 50px;
+  }
+
+  .nav-links li {
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+
+  /* Show hamburger menu */
+  .hamburger-menu {
+    display: block;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* Mobile Cart Icon */
+  .mobile-cart {
+    display: block;
+    font-size: 24px;
+    color: white;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+
+  /* Show the nav links when hamburger is clicked */
+  .nav-links.active {
+    display: flex;
+  }
+
+  /* Hide the desktop cart on mobile */
+  .cart-icon.desktop-cart {
+    display: none;
+  }
+
+  /* Sidebar styles on mobile */
+  .sidebar {
+    left: -250px; /* Sidebar off-screen by default */
+    width: 250px;
+  }
+
+  .sidebar.active {
+    left: 0; /* Show sidebar when active */
+  }
+
+  /* Position the hamburger menu and cart icon */
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-container .logo {
+    font-size: 24px;  /* Adjust logo size on mobile */
+  }
+}
+
+@media (min-width: 769px) {
+  /* Desktop view: Show nav links and cart icon */
+  .nav-links {
+    display: flex;
+  }
+
+  /* Hide hamburger menu on desktop */
+  .hamburger-menu {
+    display: none;
+  }
+
+  /* Desktop cart icon */
+  .cart-icon.desktop-cart {
+    display: block;
+  }
+
+  /* Mobile cart icon hidden on desktop */
+  .mobile-cart {
+    display: none;
+  }
+}
+
+
+.navbar {
+  background-color: #9E7148;
+  padding: 15px 30px;
+  position: fixed; /* Change from relative to fixed */
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transition: top 0.3s; /* Smooth transition for the navbar slide */
+}
+
+/* This class will hide the navbar when added */
+.navbar.hide {
+  top: -100px; /* Moves the navbar above the viewport */
+}
+
+/* Footer Styles */
+footer {
+  position: relative;
+  background-color: #9E7148;
+  color: #fff;
+  text-align: center;
+  padding: 1.25rem 0; /* Padding adjusted using rem */
+  margin-top: auto;
+}
+
+footer p {
+  font-size: 0.875rem; /* Font size in rem */
+  color: #ffffff;
+}
