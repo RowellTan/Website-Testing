@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="../Styles/styles.css">
+  <link rel="stylesheet" href="../Styles/navbar.css">
+  <link rel="stylesheet" href="../Styles/body.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="script.js" defer></script>
+
+  <!-- Font Awesome CDN for cart icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <div class="page-container">
+    <nav class="navbar" id="navbar">
+      <div class="navbar-container">
+        <!-- Logo (Large Screen) -->
+        <a href="#" class="logo" id="logo">My3DPrintShop</a>
+    
+        <!-- Desktop Nav Links -->
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="cart.html" class="cart-icon desktop-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-item-count" class="cart-item-count"></span>
+          </a></li>
+        </ul>
+    
+        <!-- Cart Icon (Mobile) -->
+        <a href="cart.html" class="cart-icon mobile-cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cart-item-count" class="cart-item-count"></span>
+        </a>
+    
+        <!-- Hamburger Menu Icon (Mobile) -->
+        <div class="hamburger-menu" id="hamburger-menu">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <ul class="sidebar-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    
+    
+    
+
+    <!-- Main Content Section -->
+    <section id="home" class="home-section">
+      <div class="intro" data-aos="fade-up">
+        <h1 class="animated-text">Welcome to My3DPrintShop</h1>
+        <p>Explore our 3D printing services! Buy our products or commission us to bring your designs to life with high-quality, affordable prints.</p>
+      </div>
+
+      <div class="gallery">
+        <h2 data-aos="fade-up">Our 3D Printed Models</h2>
+        <div class="images-container">
+          <!-- Left Image Card (Clickable) -->
+          <a href="Shop.html" class="image-card" data-aos="zoom-in">
+            <img src="https://via.placeholder.com/450x300" alt="3D Model 1">
+            <p class="image-card-header">Personal Creations</p>
+            <button class="show-more-btn" onclick="toggleInfo(this)">Show More</button>
+            <div class="extra-info">
+              <p>Check out our personal creations and purchase them directly!</p>
+            </div>
+          </a>
+
+          <!-- Right Image Card (Clickable) -->
+          <a href="Shop.html" class="image-card" data-aos="zoom-in">
+            <img src="https://via.placeholder.com/450x300" alt="3D Model 2">
+            <p class="image-card-header">Commissions</p>
+            <button class="show-more-btn" onclick="toggleInfo(this)">Show More</button>
+            <div class="extra-info">
+              <p>You can commission us by sending us a 3D printing file. We'll print it and deliver it to you. Charges depend on filament usage.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+     <!-- Footer -->
+     <footer>
+      <p>&copy; 2024 My3DPrintShop. All Rights Reserved.</p>
+    </footer>
+
+
+</body>
+</html>

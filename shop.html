@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - My3DPrintShop</title>
+  <link rel="stylesheet" href="./Styles/standardstyles.css">
+  <link rel="stylesheet" href="./Styles/navbar.css">
+  <link rel="stylesheet" href="./Styles/body.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="script.js" defer></script>
+
+  <!-- Font Awesome CDN for cart icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <div class="page-container">
+    <nav class="navbar" id="navbar">
+      <div class="navbar-container">
+        <!-- Logo (Large Screen) -->
+        <a href="#" class="logo" id="logo">My3DPrintShop</a>
+    
+        <!-- Desktop Nav Links -->
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="cart.html" class="cart-icon desktop-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-item-count" class="cart-item-count"></span>
+          </a></li>
+        </ul>
+    
+        <!-- Cart Icon (Mobile) -->
+        <a href="cart.html" class="cart-icon mobile-cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cart-item-count" class="cart-item-count"></span>
+        </a>
+    
+        <!-- Hamburger Menu Icon (Mobile) -->
+        <div class="hamburger-menu" id="hamburger-menu">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <ul class="sidebar-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <ul class="sidebar-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Shop Page Content -->
+    <section id="shop">
+      <div class="shop-container">
+        <h2>Our 3D Printed Products</h2>
+        <div class="product-list">
+          <!-- Product Item Container (Repeat for 5 items) -->
+          <div class="product-item" >
+            <a href="Product1.html" class="product-link">
+              <div class="product-image">
+                <img src="https://via.placeholder.com/450x300" alt="Product 1">
+              </div>
+              <div class="product-info">
+                <p class="product-name">3D Printed Item 1</p>
+                <p class="product-price">$19.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+              </div>
+            </a>
+          </div>
+
+          <div class="product-item" >
+            <a href="Product2.html" class="product-link">
+              <div class="product-image">
+                <img src="https://via.placeholder.com/450x300" alt="Product 2">
+              </div>
+              <div class="product-info">
+                <p class="product-name">3D Printed Item 2</p>
+                <p class="product-price">$29.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+              </div>
+            </a>
+          </div>
+
+          <div class="product-item" >
+            <a href="Product3.html" class="product-link">
+              <div class="product-image">
+                <img src="https://via.placeholder.com/450x300" alt="Product 3">
+              </div>
+              <div class="product-info">
+                <p class="product-name">3D Printed Item 3</p>
+                <p class="product-price">$34.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+              </div>
+            </a>
+          </div>
+
+          <div class="product-item" >
+            <a href="Product4.html" class="product-link">
+              <div class="product-image">
+                <img src="https://via.placeholder.com/450x300" alt="Product 4">
+              </div>
+              <div class="product-info">
+                <p class="product-name">3D Printed Item 4</p>
+                <p class="product-price">$24.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+              </div>
+            </a>
+          </div>
+
+          <div class="product-item" >
+            <a href="Product4.html" class="product-link">
+              <div class="product-image">
+                <img src="https://via.placeholder.com/450x300" alt="Product 4">
+              </div>
+              <div class="product-info">
+                <p class="product-name">3D Printed Item 4</p>
+                <p class="product-price">$24.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2024 My3DPrintShop. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
