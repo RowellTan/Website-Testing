@@ -21,19 +21,19 @@ const s3 = new AWS.S3();
 // Middleware to parse JSON data
 app.use(bodyParser.json());
 
-// Serve static files from the 'Styles' folder
-app.use('/styles', express.static(path.join(__dirname, 'Styles')));
+  // Serve static files from the 'Styles' folder
+  app.use('/styles', express.static(path.join(__dirname, 'Styles')));
 
-// Serve static files from the 'JS' folder
-app.use('/js', express.static(path.join(__dirname, 'JS')));  // Corrected to serve JS files
+  // Serve static files from the 'JS' folder
+  app.use('/js', express.static(path.join(__dirname, 'JS')));  // Corrected to serve JS files
 
-// Serve static files from the 'HTML' folder
-app.use('/html', express.static(path.join(__dirname, 'HTML')));  // Corrected to serve HTML files
+  // Serve static files from the 'HTML' folder
+  app.use('/html', express.static(path.join(__dirname, 'HTML')));  // Corrected to serve HTML files
 
-// Serve index.html at the root URL
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'HTML', 'index.html')); // Serve the default index.html
-});
+  // Serve index.html at the root URL
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'HTML', 'index.html')); // Serve the default index.html
+  });
 
 // Serve other .html files from the 'HTML' folder
 app.get('/:page.html', (req, res) => {
