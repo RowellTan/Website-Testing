@@ -24,12 +24,46 @@ body {
   transition: transform 0.3s ease; /* Smooth scaling effect */
 }
 
+
 /* Responsive adjustments */
 @media (max-width: 1200px) {
   .payment-container {
     width: 90%; /* Make the container wider on smaller screens */
     padding: 1.5rem; /* Slightly reduce padding */
   }
+}
+
+/* Container for Address and Block Number + Postal Code */
+.address-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;  /* Space between the two form groups */
+}
+
+/* Form Group 2 (Address) takes 50% of the width */
+.form-group-2 {
+  width: 50%;
+}
+
+/* Form Group 3 (Block Number + Postal Code) takes 50% of the width */
+.form-group-3 {
+  width: 50%;
+  display: flex;
+  justify-content: space-between; /* Ensure the block number and postal code are side by side */
+}
+
+/* Make the label and input appear side by side for block number */
+.block-number-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 50%; /* Takes up 50% of form-group-3's width */
+}
+
+/* Style for the Postal Code input */
+#postal-code {
+  width: 50%; /* Takes up the other 50% of form-group-3's width */
+  margin-left: 10px; /* Add a small gap between Block Number and Postal Code */
 }
 
 @media (max-width: 768px) {
@@ -275,4 +309,43 @@ h3 {
   font-size: 1.2em;
   font-weight: bold;
   margin: 0;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  display: none; /* Initially hidden */
+  margin-left: 10px;
+  font-style: italic;
+}
+
+.error-message.show {
+  display: inline-block; /* Show error when validation fails */
+}
+
+.error-message::before {
+  content: "⚠️ "; /* Add a warning symbol before the error message */
+}
+
+
+/* For screens 768px or smaller (tablets, phones) */
+@media screen and (max-width: 768px) {
+  /* Reduce font size of text inside the input fields (Block Number and Postal Code) */
+  .block-number-wrapper input::placeholder,
+  #postal-code input::placeholder,
+  .block-number-wrapper input,
+  #postal-code input {
+    font-size: 12px; /* Smaller font size for inputs */
+  }
+}
+
+/* For screens 480px or smaller (phones) */
+@media screen and (max-width: 480px) {
+  /* Further decrease font size for Block Number and Postal Code inputs */
+  .block-number-wrapper input::placeholder,
+  #postal-code input::placeholder,
+  .block-number-wrapper input,
+  #postal-code input {
+    font-size: 10px; /* Even smaller font size for smaller screens */
+  }
 }

@@ -121,7 +121,7 @@
   color: white;
   padding: 20px;
   transition: left 0.3s ease-in-out; /* Slide in effect */
-  z-index: 5; /* Make sure it's above the content */
+  z-index: 12; /* Make sure it's above the content */
 }
 
 .sidebar-links {
