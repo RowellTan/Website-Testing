@@ -184,18 +184,13 @@ function processPaymentAndUpload() {
   // Log the order data for debugging
   console.log('Order Data:', orderData);
   console.log('Metadata:', metadata); // Log metadata to check if items are included
+  console.log('Payload being sent to API:', JSON.stringify(orderData));
 
-  // Define the S3 upload parameters with dynamic metadata
-  const params = {
-    Bucket: 'ordersummaries', // Your S3 bucket name
-    Key: `${orderID}.json`, // The file name in the S3 bucket
-    Body: JSON.stringify(orderData), // Order data as the content
-    Metadata: metadata, // Dynamically created metadata for items
-    ContentType: 'application/json', // File content type
-  };
+  // Define the API Gateway endpoint URL
+  const apiUrl = 'https://hnqp4h2yac.execute-api.ap-southeast-1.amazonaws.com/prod/Order'; // Include /Order
 
-  // Send the order data to your backend to upload to S3
-  fetch('http://localhost:3000/upload-order', {
+  // Send the order data to your backend (API Gateway)
+  fetch(apiUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -213,6 +208,7 @@ function processPaymentAndUpload() {
       alert('There was an error uploading your order.');
     });
 }
+
 
 
 

@@ -50,21 +50,7 @@
   dependencies:
     tslib "^2.5.0"
 
-"@aws-amplify/core@6.8.0":
-  version "6.8.0"
-  resolved "https://registry.npmjs.org/@aws-amplify/core/-/core-6.8.0.tgz"
-  integrity sha512-1gnemNLMN0on0cxoIfqlICL2ebPLa4OGbFb2mhkdJC9Jx6xCHUV1lhvQcrHRqxAkIsQnKe8viHV2QotrTKzzkw==
-  dependencies:
-    "@aws-crypto/sha256-js" "5.2.0"
-    "@aws-sdk/types" "3.398.0"
-    "@smithy/util-hex-encoding" "2.0.0"
-    "@types/uuid" "^9.0.0"
-    js-cookie "^3.0.5"
-    rxjs "^7.8.1"
-    tslib "^2.5.0"
-    uuid "^9.0.0"
-
-"@aws-amplify/core@^6.8.0":
+"@aws-amplify/core@6.8.0", "@aws-amplify/core@^6.8.0":
   version "6.8.0"
   resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-6.8.0.tgz#b40188fd25788291d490f8c43cee124d7fb1750d"
   integrity sha512-1gnemNLMN0on0cxoIfqlICL2ebPLa4OGbFb2mhkdJC9Jx6xCHUV1lhvQcrHRqxAkIsQnKe8viHV2QotrTKzzkw==
@@ -1577,7 +1563,7 @@ available-typed-arrays@^1.0.7:
 
 aws-amplify@^6.11.0:
   version "6.11.0"
-  resolved "https://registry.npmjs.org/aws-amplify/-/aws-amplify-6.11.0.tgz"
+  resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-6.11.0.tgz#94b9a415f97faf512d633d3bf80c8bd3b9399b5f"
   integrity sha512-CdX31Drrbk1i3QhpqCAAguf6OwPg2OHTa5g0wnxksRTjGdGKNLGaJCl65fcy3qG+LMh5Sjr55JJ6aO8wXYbvQw==
   dependencies:
     "@aws-amplify/analytics" "7.0.64"

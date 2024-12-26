@@ -8,25 +8,50 @@
   <link rel="stylesheet" href="/Styles/navbar.css">
   <link rel="stylesheet" href="/Styles/body.css">
   <script src="/JS/script.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/aws-amplify@4.3.17/dist/aws-amplify.min.js"></script>
 
   <!-- Font Awesome CDN for cart icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
   <div class="page-container">
-    <!-- Navbar -->
     <nav class="navbar" id="navbar">
       <div class="navbar-container">
-        <a href="home.html" class="logo">My3DPrintShop</a>
+        <!-- Logo (Large Screen) -->
+        <a href="index.html" class="logo" id="logo">My3DPrintShop</a>
+    
+        <!-- Desktop Nav Links -->
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span id="cart-item-count" class="cart-item-count"></span></a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="cart.html" class="cart-icon desktop-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-item-count" class="cart-item-count"></span>
+          </a></li>
         </ul>
+    
+        <!-- Cart Icon (Mobile) -->
+        <a href="cart.html" class="cart-icon mobile-cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cart-item-count" class="cart-item-count"></span>
+        </a>
+    
+        <!-- Hamburger Menu Icon (Mobile) -->
+        <div class="hamburger-menu" id="hamburger-menu">
+          <i class="fas fa-bars"></i>
+        </div>
       </div>
     </nav>
+    
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <ul class="sidebar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="">Services</a></li>
+      </ul>
+    </div>
 
     <!-- Cart Page Content -->
     <section id="cart">

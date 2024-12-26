@@ -278,3 +278,7 @@ body {
 
 
 
+/* Remove underline from links */
+a {
+  text-decoration: none;
+}

@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', (event) => {
     // Select the navbar elements
     let navbarLinks = document.querySelectorAll(".nav-links a");
