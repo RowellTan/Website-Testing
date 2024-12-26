@@ -21,24 +21,21 @@ const s3 = new AWS.S3();
 // Middleware to parse JSON data
 app.use(bodyParser.json());
 
-  // Serve static files from the 'Styles' folder
-  app.use('/styles', express.static(path.join(__dirname, 'Styles')));
+// Serve static files from the 'Styles' folder
+app.use('/styles', express.static(path.join(__dirname, 'Styles')));
 
-  // Serve static files from the 'JS' folder
-  app.use('/js', express.static(path.join(__dirname, 'JS')));  // Corrected to serve JS files
+// Serve static files from the 'JS' folder
+app.use('/js', express.static(path.join(__dirname, 'JS')));
 
-  // Serve static files from the 'HTML' folder
-  app.use('/html', express.static(path.join(__dirname, 'HTML')));  // Corrected to serve HTML files
+// Serve index.html at the root URL
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html')); // Updated to serve index.html from root
+});
 
-  // Serve index.html at the root URL
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'HTML', 'index.html')); // Serve the default index.html
-  });
-
-// Serve other .html files from the 'HTML' folder
+// Serve other .html files from the root directory
 app.get('/:page.html', (req, res) => {
   const fileName = req.params.page + '.html'; // Get the filename from the URL parameter
-  const filePath = path.join(__dirname, 'HTML', fileName); // Construct the full path to the HTML file
+  const filePath = path.join(__dirname, fileName); // Construct the full path to the HTML file
   
   // Send the file if it exists, else return 404
   res.sendFile(filePath, (err) => {
@@ -48,7 +45,6 @@ app.get('/:page.html', (req, res) => {
     }
   });
 });
-
 
 
 // Route to handle order summary upload to S3
