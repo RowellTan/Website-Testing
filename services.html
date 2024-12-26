@@ -4,23 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
-  
-  <!-- Link to external CSS files -->
-  <link rel="stylesheet" href="/Styles/front.css">
+  <link rel="stylesheet" href="/Styles/styles.css">
   <link rel="stylesheet" href="/Styles/navbar.css">
   <link rel="stylesheet" href="/Styles/body.css">
-  <link rel="stylesheet" href="/Styles/swiper.css">
-  
   <script src="/JS/script.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
   <!-- Font Awesome CDN for cart icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css">
-
 </head>
 <body>
   <div class="page-container">
@@ -33,7 +25,7 @@
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="services.html">Services</a></li>
+          <li><a href="">Services</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><a href="cart.html" class="cart-icon desktop-cart">
             <i class="fas fa-shopping-cart"></i>
@@ -54,62 +46,56 @@
       </div>
     </nav>
     
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <ul class="sidebar-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    
+    
+    
+
     <!-- Main Content Section -->
     <section id="home" class="home-section">
       <div class="intro" data-aos="fade-up">
-        <h1 class="animated-text">Explore Our Creative 3D Printed Products!</h1>
-        <p>Looking for a custom design? Commission us for your personalized items.</p>
+        <h1 class="animated-text">Welcome to the shop!</h1>
+        <p>Explore our 3D printing services! Buy our products or commission us to bring your designs to life with high-quality, affordable prints.</p>
       </div>
-    
-      <!-- Swiper Carousel -->
-      <div class="swiper-container" id="product-carousel">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="carousel-card">
-              <img src="Images/square_noun_002_35417.jpg" alt="Product 1" class="carousel-img">
+
+      <div class="gallery">
+        <div class="images-container">
+          <!-- Left Image Card (Clickable) -->
+          <a href="shop.html" class="image-card" data-aos="zoom-in">
+            <img src="https://via.placeholder.com/450x300" alt="3D Model 1">
+            <p class="image-card-header">Personal Creations</p>
+            <button class="show-more-btn" onclick="toggleInfo(this)">Show More</button>
+            <div class="extra-info">
+              <p>Check out our personal creations and purchase them directly!</p>
             </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="carousel-card">
-              <img src="Images/square_noun_002_35417.jpg" alt="Product 2" class="carousel-img">
+          </a>
+
+          <!-- Right Image Card (Clickable) -->
+          <a href="shop.html" class="image-card" data-aos="zoom-in">
+            <img src="https://via.placeholder.com/450x300" alt="3D Model 2">
+            <p class="image-card-header">Commissions</p>
+            <button class="show-more-btn" onclick="toggleInfo(this)">Show More</button>
+            <div class="extra-info">
+              <p>You can commission us by sending us a 3D printing file. We'll print it and deliver it to you. Charges depend on filament usage.</p>
             </div>
-          </div>
+          </a>
         </div>
-        <!-- Swiper Navigation Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
       </div>
     </section>
   </div>
+     <!-- Footer -->
+     <footer>
+      <p>&copy; 2024 My3DPrintShop. All Rights Reserved.</p>
+    </footer>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2024 My3DPrintShop. All Rights Reserved.</p>
-  </footer>
 
-  <!-- Swiper JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
-  
-  <script>
-    // Initialize Swiper
-    const swiper = new Swiper('.swiper-container', {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 10,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-    });
-
-    // Ensure arrows are always visible
-    swiper.on('slideChange', function () {
-      swiper.navigation.update();  // Reinitialize the navigation
-    });
-  </script>
 </body>
 </html>

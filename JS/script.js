@@ -367,3 +367,4 @@ const sidebar = document.getElementById('sidebar');
 hamburgerMenu.addEventListener('click', () => {
   sidebar.classList.toggle('active');
 });
+

@@ -276,30 +276,5 @@ body {
   color: #888;
 }
 
-/* Button positioned over the product info */
-.add-to-cart {
-  position: absolute;  /* Make the button absolutely positioned */
-  bottom: 20px;  /* Adjust this to position the button over the image or text */
-  left: 50%;  /* Center the button horizontally */
-  transform: translateX(-50%);  /* Adjust for exact centering */
-  background-color: #ff9900;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 5px;
-  z-index: 10; /* Ensure the button is on top of the link */
-}
-
-.add-to-cart:hover {
-  background-color: #cc7a00;
-}
-
-/* Remove underline and change color for any links */
-a {
-  text-decoration: none; /* Removes underline */
-  color: inherit; /* Inherits color from parent element */
-}
 
 
