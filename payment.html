@@ -13,39 +13,38 @@
   <div class="payment-container">
     <h1>Payment Page</h1>
 
-    <div id="user-details">
-      <h3>Your Details</h3>
-      <div class="form-group">
-        <input type="text" id="name" placeholder="Name" required>
-        <span id="name-error" class="error-message"></span>
+    <div class="form-group">
+      <input type="text" id="name" placeholder="Name" required>
+      <small class="error-message" id="name-error" style="display: none;"></small>
+    </div>
+    
+    <div class="form-group">
+      <input type="tel" id="phone" placeholder="Phone number" required>
+      <small class="error-message" id="phone-error" style="display: none;"></small>
+    </div>
+    
+    
+    <div class="form-group">
+      <input type="email" id="email" placeholder="Email Address" required>
+      <small class="error-message" id="email-error" style="display: none;"></small>
+    </div>
+    
+    <div class="address-container">
+      <div class="form-group form-group-2">
+        <input type="text" id="address" placeholder="Address" required>
       </div>
       
-      <div class="form-group">
-        <input type="tel" id="phone" placeholder="Phone number" required>
-        <span id="phone-error" class="error-message"></span>
-      </div>
-      
-      <div class="form-group">
-        <input type="email" id="email" placeholder="Email Address" required>
-        <span id="email-error" class="error-message"></span>
-      </div>
-      
-      <div class="address-container">
-        <div class="form-group form-group-2">
-          <input type="text" id="address" placeholder="Address" required>
+      <div class="form-group form-group-3">
+        <div class="block-number-wrapper">
+          <label for="block-number">#</label>
+          <input type="text" id="block-number" placeholder="Unit No.">
         </div>
-        
-        <div class="form-group form-group-3">
-          <div class="block-number-wrapper">
-            <label for="block-number">#</label>
-            <input type="text" id="block-number" placeholder="Unit No." required>
-          </div>
-          <input type="text" id="postal-code" placeholder="Postal Code" required>
-          <span id="postal-error" class="error-message"></span>
-        </div>
+        <input type="text" id="postal-code" placeholder="Postal Code">
       </div>
-      <span id="address-error" class="error-message"></span>
-      
+    </div>
+    <small class="error-message" id="address-error" style="display: none;"></small>
+
+    
     <div class="order-summary-container">
       <h3>Order Summary</h3>
       <br>
@@ -59,9 +58,8 @@
         <p id="total-bill">$0.00</p>
       </div>
     </div>
-    
 
-      <!-- User Details Section -->
+    <!-- User Details Section -->
 
     <!-- Payment Options -->
     <div id="payment-options">
@@ -91,10 +89,10 @@
       <!-- This will dynamically load based on selected payment method -->
     </div>
 
-    <button id="proceed-to-payment" onclick="processPaymentAndUpload()">Proceed to Payment</button>
+    <button id="proceed-to-payment" onclick="validateAndProceed()">Proceed to Payment</button>
 
     <!-- Back to Cart Button -->
     <button id="back-to-cart" onclick="goBackToCart()">Back to Cart</button>
   </div>
-  </body>
+</body>
 </html>

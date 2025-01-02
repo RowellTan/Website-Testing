@@ -238,8 +238,31 @@ h3 {
   border-color: #4CAF50;
 }
 
-.form-group input.error {
+/* Red border for invalid fields */
+input.invalid {
+  border: 2px solid red;
+}
+
+/* When input is focused and invalid, turn the border red */
+input.invalid:focus {
   border-color: red;
+}
+
+/* For valid input, set green focus border */
+input:valid:focus {
+  border-color: #4CAF50;
+}
+
+/* Optional: For small error messages under input */
+small.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+
+.error {
+  border: 2px solid red; /* or any other visual indication you want */
 }
 
 /* Responsive styles */
@@ -323,11 +346,6 @@ h3 {
   display: inline-block; /* Show error when validation fails */
 }
 
-.error-message::before {
-  content: "⚠️ "; /* Add a warning symbol before the error message */
-}
-
-
 /* For screens 768px or smaller (tablets, phones) */
 @media screen and (max-width: 768px) {
   /* Reduce font size of text inside the input fields (Block Number and Postal Code) */
@@ -349,3 +367,4 @@ h3 {
     font-size: 10px; /* Even smaller font size for smaller screens */
   }
 }
+

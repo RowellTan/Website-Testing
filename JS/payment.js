@@ -87,229 +87,134 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+// Function to format the current date in DD/MM/YYYY HH:mm:ss format (SGT)
+function getSGTFormattedDate() {
+  const now = new Date();
 
-// Function to process payment and upload order details to S3 with dynamic metadata
-function processPaymentAndUpload() {
-  const orderID = generateOrderID(); // Ensure this function is accessible
+  // Get the timezone offset for SGT (Singapore is UTC +8)
+  const options = { timeZone: 'Asia/Singapore', hour12: false };
+  const dateFormatter = new Intl.DateTimeFormat('en-GB', options);
 
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-  const email = document.getElementById('email').value;
-  const address = document.getElementById('address').value;
-  const totalBill = document.getElementById('total-bill').innerText;
+  // Format the date using the options to get DD/MM/YYYY format
+  const formattedDate = dateFormatter.format(now);
 
+  // Format the time using getHours, getMinutes, and getSeconds
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+
+  // Return the formatted date in DD/MM/YYYY HH:mm:ss format
+  return `${formattedDate} ${hours}:${minutes}:${seconds}`;
+}
+
+
+
+// Function to validate the form
+function validateForm() {
   let isValid = true;
-  let firstInvalidField = null;
 
-  // Check if name is empty
-  if (!name || name.trim() === "") {
-    showError('name', 'Name is required.');
+  // Validate name
+  const name = document.getElementById('name').value.trim();
+  const nameError = document.getElementById('name-error');
+  const nameInput = document.getElementById('name');
+  if (!name) {
+    showPopup(nameError, "Name is required.");
+    nameInput.classList.add('invalid');
     isValid = false;
-    if (!firstInvalidField) firstInvalidField = 'name';
   } else {
-    hideError('name');
+    hidePopup(nameError);
+    nameInput.classList.remove('invalid');
   }
 
-  // Check if phone is empty or invalid format
-  const phonePattern = /^\+?[1-9]\d{1,14}$/; // Simple phone number validation
-  if (!phone || phone.trim() === "" || !phonePattern.test(phone)) {
-    showError('phone', 'Please enter a valid phone number (e.g., 123456789).');
-    setErrorBorder('phone');
+  // Validate phone
+  const phone = document.getElementById('phone').value.trim();
+  const phoneError = document.getElementById('phone-error');
+  const phoneInput = document.getElementById('phone');
+  const phoneRegex = /^[0-9]{8}$/; // Adjust regex for Singapore phone numbers
+  if (!phone) {
+    showPopup(phoneError, "Phone number is required.");
+    phoneInput.classList.add('invalid');
     isValid = false;
-    if (!firstInvalidField) firstInvalidField = 'phone';
-  } else {
-    hideError('phone');
-    removeErrorBorder('phone');
-  }
-
-  // Check if email is empty or invalid format
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Basic email validation
-  if (!email || email.trim() === "" || !emailPattern.test(email)) {
-    showError('email', 'Please enter a valid email (e.g., example@gmail.com).');
-    setErrorBorder('email');
+  } else if (!phoneRegex.test(phone)) {
+    showPopup(phoneError, "Please enter a valid phone number.");
+    phoneInput.classList.add('invalid');
     isValid = false;
-    if (!firstInvalidField) firstInvalidField = 'email';
   } else {
-    hideError('email');
-    removeErrorBorder('email');
+    hidePopup(phoneError);
+    phoneInput.classList.remove('invalid');
   }
 
-  // Check if address is empty
-  if (!address || address.trim() === "") {
-    showError('address', 'Address is required.');
+  // Validate email
+  const email = document.getElementById('email').value.trim();
+  const emailError = document.getElementById('email-error');
+  const emailInput = document.getElementById('email');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    showPopup(emailError, "Please enter a valid email address (e.g., name@example.com).");
+    emailInput.classList.add('invalid');
     isValid = false;
-    if (!firstInvalidField) firstInvalidField = 'address';
   } else {
-    hideError('address');
+    hidePopup(emailError);
+    emailInput.classList.remove('invalid');
   }
 
-  if (!isValid && firstInvalidField) {
-    scrollToElement(firstInvalidField);
-    return;
+  // Validate address
+  const address = document.getElementById('address').value.trim();
+  const blockNumber = document.getElementById('block-number').value.trim();
+  const postalCode = document.getElementById('postal-code').value.trim();
+  const addressError = document.getElementById('address-error');
+  const addressInput = document.getElementById('address');
+  const blockNumberInput = document.getElementById('block-number');
+  const postalCodeInput = document.getElementById('postal-code');
+
+  const fullAddress = `${address} #${blockNumber}, ${postalCode}`.trim();
+  if (fullAddress === "# ," || fullAddress === "#," || fullAddress === ",") {
+    showPopup(addressError, "Address is required.");
+    addressInput.classList.add('invalid');
+    blockNumberInput.classList.add('invalid');
+    postalCodeInput.classList.add('invalid');
+    isValid = false;
+  } else {
+    hidePopup(addressError);
+    addressInput.classList.remove('invalid');
+    blockNumberInput.classList.remove('invalid');
+    postalCodeInput.classList.remove('invalid');
   }
 
-  const checkoutData = JSON.parse(localStorage.getItem('checkout'));
+  return isValid;
+}
 
-  if (!checkoutData || !checkoutData.items) {
-    alert('No items found for checkout!');
-    return;
+// Show the popup error message
+function showPopup(element, message) {
+  element.textContent = message;
+  element.style.display = 'block';  // Show the popup
+}
+
+// Hide the popup error message
+function hidePopup(element) {
+  element.textContent = '';
+  element.style.display = 'none';  // Hide the popup
+}
+
+// Function to handle form submission and validation
+function validateAndProceed() {
+  if (validateForm()) {
+    // If form is valid, proceed with payment processing
+    processPaymentAndUpload();
+  } else {
+    // If validation fails, prevent form submission
+    console.log('Form validation failed.');
   }
-
-  const metadata = {
-    'x-amz-meta-orderid': orderID,
-    'x-amz-meta-customername': name,
-    'x-amz-meta-orderphonenumber': phone,
-    'x-amz-meta-orderemail': email,
-    'x-amz-meta-orderaddress': address,
-    'x-amz-meta-orderbill': totalBill,
-    'x-amz-meta-orderdate': new Date().toISOString(),
-    'x-amz-meta-totalitems': checkoutData.items.length,
-  };
-
-  checkoutData.items.forEach((item, index) => {
-    metadata[`${index + 1}`] = `${item.name} - Qty ${item.quantity}`;
-  });
-
-  const orderData = {
-    orderID,
-    customerName: name,
-    orderPhoneNumber: phone,
-    orderEmail: email,
-    orderAddress: address,
-    orderBill: totalBill,
-    orderDate: new Date().toISOString(),
-    formattedItems: checkoutData.items.map((item, index) => ({
-      [`Item${index + 1}`]: `${item.name} - Qty ${item.quantity}`,
-    })),
-    checkoutData
-  };
-
-  console.log('Order Data:', orderData);
-  console.log('Metadata:', metadata);
-  console.log('Payload being sent to API:', JSON.stringify(orderData));
-
-  const apiUrl = 'https://hnqp4h2yac.execute-api.ap-southeast-1.amazonaws.com/prod/Order';
-
-  fetch(apiUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(orderData),
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Order uploaded successfully:', data);
-      alert('Payment processed and order uploaded successfully!');
-    })
-    .catch(error => {
-      console.error('Error uploading order:', error);
-      alert('There was an error uploading your order.');
-    });
 }
-
-// Show error message next to the input field
-function showError(fieldId, message) {
-  const errorElement = document.getElementById(`${fieldId}-error`);
-  errorElement.textContent = message;
-  errorElement.classList.add('show');
-}
-
-// Hide error message next to the input field
-function hideError(fieldId) {
-  const errorElement = document.getElementById(`${fieldId}-error`);
-  errorElement.classList.remove('show');
-}
-
-// Set error border for the input field
-function setErrorBorder(fieldId) {
-  const inputElement = document.getElementById(fieldId);
-  inputElement.classList.add('error');
-}
-
-// Remove error border for the input field
-function removeErrorBorder(fieldId) {
-  const inputElement = document.getElementById(fieldId);
-  inputElement.classList.remove('error');
-}
-
-// Show error message next to the input field
-function showError(fieldId, message) {
-  const errorElement = document.getElementById(`${fieldId}-error`);
-  errorElement.textContent = message;
-  errorElement.classList.add('show');
-}
-
-// Hide error message next to the input field
-function hideError(fieldId) {
-  const errorElement = document.getElementById(`${fieldId}-error`);
-  errorElement.classList.remove('show');
-}
-
-
-
-
-
 
 // Function to process payment and upload order details to S3 with dynamic metadata
 function processPaymentAndUpload() {
-  const orderID = generateOrderID(); // Ensure this function is accessible
-
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-  const email = document.getElementById('email').value;
+  // Get values from the form
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
   const address = getAddress(); // Get the combined address
-  const totalBill = document.getElementById('total-bill').innerText;
-
-  let isValid = true;
-  let firstInvalidField = null;
-
-  // Check if name is empty
-  if (!name || name.trim() === "") {
-    showError('name', 'Name is required.');
-    isValid = false;
-    if (!firstInvalidField) firstInvalidField = 'name';
-  } else {
-    hideError('name');
-  }
-
-  // Check if phone is empty or invalid format
-  const phonePattern = /^\+?[1-9]\d{1,14}$/; // Simple phone number validation
-  if (!phone || phone.trim() === "" || !phonePattern.test(phone)) {
-    showError('phone', 'Please enter a valid phone number (e.g., 123456789).');
-    setErrorBorder('phone');
-    isValid = false;
-    if (!firstInvalidField) firstInvalidField = 'phone';
-  } else {
-    hideError('phone');
-    removeErrorBorder('phone');
-  }
-
-  // Check if email is empty or invalid format
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Basic email validation
-  if (!email || email.trim() === "" || !emailPattern.test(email)) {
-    showError('email', 'Please enter a valid email (e.g., example@gmail.com).');
-    setErrorBorder('email');
-    isValid = false;
-    if (!firstInvalidField) firstInvalidField = 'email';
-  } else {
-    hideError('email');
-    removeErrorBorder('email');
-  }
-
-  // Check if address is empty
-  if (!address || address.trim() === "") {
-    showError('address', 'Address is required.');
-    isValid = false;
-    if (!firstInvalidField) firstInvalidField = 'address';
-  } else {
-    hideError('address');
-  }
-
-  if (!isValid && firstInvalidField) {
-    scrollToElement(firstInvalidField);
-    return;
-  }
+  const totalBill = document.getElementById('total-bill').innerText.trim();
 
   const checkoutData = JSON.parse(localStorage.getItem('checkout'));
 
@@ -318,6 +223,10 @@ function processPaymentAndUpload() {
     return;
   }
 
+  // Generate order ID (use your logic for generating an order ID)
+  const orderID = generateOrderID();
+
+  // Prepare metadata for the order
   const metadata = {
     'x-amz-meta-orderid': orderID,
     'x-amz-meta-customername': name,
@@ -325,14 +234,16 @@ function processPaymentAndUpload() {
     'x-amz-meta-orderemail': email,
     'x-amz-meta-orderaddress': address, // Use combined address
     'x-amz-meta-orderbill': totalBill,
-    'x-amz-meta-orderdate': new Date().toISOString(),
+    'x-amz-meta-orderdate': getSGTFormattedDate(), // Use the formatted SGT date
     'x-amz-meta-totalitems': checkoutData.items.length,
   };
 
+  // Add item details to the metadata
   checkoutData.items.forEach((item, index) => {
     metadata[`${index + 1}`] = `${item.name} - Qty ${item.quantity}`;
   });
 
+  // Prepare the order data for the API
   const orderData = {
     orderID,
     customerName: name,
@@ -340,17 +251,19 @@ function processPaymentAndUpload() {
     orderEmail: email,
     orderAddress: address, // Use combined address
     orderBill: totalBill,
-    orderDate: new Date().toISOString(),
+    orderDate: getSGTFormattedDate(), // Use the formatted SGT date
     formattedItems: checkoutData.items.map((item, index) => ({
       [`Item${index + 1}`]: `${item.name} - Qty ${item.quantity}`,
     })),
     checkoutData
   };
 
+  // Log the order data and metadata for debugging
   console.log('Order Data:', orderData);
   console.log('Metadata:', metadata);
   console.log('Payload being sent to API:', JSON.stringify(orderData));
 
+  // Make the API call to post the data
   const apiUrl = 'https://hnqp4h2yac.execute-api.ap-southeast-1.amazonaws.com/prod/Order';
 
   fetch(apiUrl, {
@@ -373,51 +286,18 @@ function processPaymentAndUpload() {
 
 // Function to get the combined address value
 function getAddress() {
-  const address = document.getElementById('address').value;
-  const blockNumber = document.getElementById('block-number').value;
-  const postalCode = document.getElementById('postal-code').value;
+  const address = document.getElementById('address').value.trim();
+  const blockNumber = document.getElementById('block-number').value.trim();
+  const postalCode = document.getElementById('postal-code').value.trim();
 
-  return `${address} #${blockNumber} , ${postalCode}`;
+  // If blockNumber and postalCode are empty, return just the address
+  if (!blockNumber && !postalCode) {
+    return address;
+  }
+
+  // Otherwise, combine address, block number, and postal code
+  return `${address} ${blockNumber ? `#${blockNumber}` : ''} ${postalCode ? `, ${postalCode}` : ''}`.trim();
 }
-
-// Show error message next to the input field
-function showError(fieldId, message) {
-  const errorElement = document.getElementById(`${fieldId}-error`);
-  errorElement.textContent = message;
-  errorElement.classList.add('show');
-}
-
-// Hide error message next to the input field
-function hideError(fieldId) {
-  const errorElement = document.getElementById(`${fieldId}-error`);
-  errorElement.classList.remove('show');
-}
-
-// Set error border for the input field
-function setErrorBorder(fieldId) {
-  const inputElement = document.getElementById(fieldId);
-  inputElement.classList.add('error');
-}
-
-// Remove error border for the input field
-function removeErrorBorder(fieldId) {
-  const inputElement = document.getElementById(fieldId);
-  inputElement.classList.remove('error');
-}
-
-
-// Function to highlight input field with error
-function highlightError(fieldId) {
-  const field = document.getElementById(fieldId);
-  field.style.border = '2px solid red';
-}
-
-// Function to remove highlight from input field
-function removeHighlight(fieldId) {
-  const field = document.getElementById(fieldId);
-  field.style.border = '';
-}
-
 
 // Function to load user data from localStorage
 function loadCustomerData() {
